@@ -66,19 +66,95 @@ namespace Mastermind
             };
             gridBoard.SetValue(Grid.RowProperty, 2);
             gridBoard.SetValue(Grid.ColumnProperty, 2);
-
-            // Add rows number of row definitions and column definitions
-            for (i = 0; i < _rows; i++)
-            {
-                gridBoard.RowDefinitions.Add(new RowDefinition());
-            } // for
-
-            for (i = 0; i < 4; i++)
-            {
-                gridBoard.ColumnDefinitions.Add(new ColumnDefinition());
-            } // for
-
+            gridBoard.RowDefinitions.Add(new RowDefinition());
+            gridBoard.RowDefinitions.Add(new RowDefinition());
+            gridBoard.RowDefinitions.Add(new RowDefinition());
+            gridBoard.ColumnDefinitions.Add(new ColumnDefinition());
+            gridBoard.ColumnDefinitions.Add(new ColumnDefinition());
+            gridBoard.RowDefinitions[0].Height = new GridLength(100);
+            gridBoard.ColumnDefinitions[1].Width = new GridLength(250);
             parentGrid.Children.Add(gridBoard);
+
+            // Create grid for the answer pegs
+            Grid answerGrid = new Grid
+            {
+                Name = "AnswerGrid",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = 10 * _rows,
+                Width = 100 * _rows,
+                Background = new SolidColorBrush(Colors.Gray),
+                Margin = new Thickness(5)
+            };
+            answerGrid.SetValue(Grid.RowProperty, 0);
+            answerGrid.SetValue(Grid.ColumnSpanProperty, 2);
+            answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            gridBoard.Children.Add(answerGrid);
+
+            // Create grid for the display pegs
+            Grid displayGrid = new Grid
+            {
+                Name = "DisplayGrid",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = 100 * _rows,
+                Width = 100 * _rows,
+                Background = new SolidColorBrush(Colors.Green),
+                Margin = new Thickness(5)
+            };
+            displayGrid.SetValue(Grid.RowProperty, 1);
+            displayGrid.SetValue(Grid.ColumnProperty, 0);
+            displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            for(i = 0; i < _rows; i++)
+            {
+                displayGrid.RowDefinitions.Add(new RowDefinition());
+            } // for
+            gridBoard.Children.Add(displayGrid);
+
+            // Create grid for the feedback pegs
+            Grid feedbackGrid = new Grid
+            {
+                Name = "FeedbackGrid",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = 100 * _rows,
+                Width = 100 * _rows,
+                Background = new SolidColorBrush(Colors.Blue),
+                Margin = new Thickness(5)
+            };
+            feedbackGrid.SetValue(Grid.RowProperty, 1);
+            feedbackGrid.SetValue(Grid.ColumnProperty, 2);
+            feedbackGrid.RowDefinitions.Add(new RowDefinition());
+            feedbackGrid.RowDefinitions.Add(new RowDefinition());
+            feedbackGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            feedbackGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            gridBoard.Children.Add(feedbackGrid);
+
+            // Create grid for the choose pegs
+            Grid chooseGrid = new Grid
+            {
+                Name = "ChooseGrid",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = 100 * _rows,
+                Width = 100 * _rows,
+                Background = new SolidColorBrush(Colors.Red),
+                Margin = new Thickness(5)
+            };
+            chooseGrid.SetValue(Grid.RowProperty, 2);
+            chooseGrid.SetValue(Grid.ColumnSpanProperty, 2);
+            for(i = 0; i < 4; i++)
+            {
+                chooseGrid.RowDefinitions.Add(new RowDefinition());
+                chooseGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+            gridBoard.Children.Add(chooseGrid);
         } // createBoard()
 
     }
