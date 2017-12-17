@@ -26,7 +26,7 @@ namespace Mastermind
     {
         #region Global Variables
         // Constants
-        private const int _rows = 10;
+        private const int _rows = 5;
         // Variables
         private int i, j;
         #endregion
@@ -60,9 +60,9 @@ namespace Mastermind
                 Name = "GameBoard",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
-                Height = 100 * _rows,
-                Width = 100 * _rows,
-                Background = new SolidColorBrush(Colors.Gray),
+                Height = 1000,
+                Width = 1000,
+                Background = new SolidColorBrush(Colors.MintCream),
                 Margin = new Thickness(5),
             };
             gridBoard.SetValue(Grid.RowProperty, 2);
@@ -73,6 +73,7 @@ namespace Mastermind
             gridBoard.ColumnDefinitions.Add(new ColumnDefinition());
             gridBoard.ColumnDefinitions.Add(new ColumnDefinition());
             gridBoard.RowDefinitions[0].Height = new GridLength(100);
+            gridBoard.RowDefinitions[2].Height = new GridLength(400);
             gridBoard.ColumnDefinitions[1].Width = new GridLength(250);
             parentGrid.Children.Add(gridBoard);
 
@@ -82,8 +83,8 @@ namespace Mastermind
                 Name = "AnswerGrid",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
-                Height = 10 * _rows,
-                Width = 100 * _rows,
+                Height = 1000,
+                Width = 1000,
                 Background = new SolidColorBrush(Colors.Gray),
                 Margin = new Thickness(5)
             };
@@ -99,23 +100,26 @@ namespace Mastermind
             Grid displayGrid = new Grid
             {
                 Name = "DisplayGrid",
-                HorizontalAlignment = HorizontalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Height = 100 * _rows,
-                Width = 100 * _rows,
+                Height = 1000,
+                Width = 1000,
                 Background = new SolidColorBrush(Colors.Green),
                 Margin = new Thickness(5)
             };
             displayGrid.SetValue(Grid.RowProperty, 1);
             displayGrid.SetValue(Grid.ColumnProperty, 0);
-            displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            for(i = 0; i < _rows; i++)
+            for (i = 0; i < _rows; i++)
             {
                 displayGrid.RowDefinitions.Add(new RowDefinition());
-            } // for
+                displayGrid.RowDefinitions[i].Height = new GridLength(90);
+                for (j = 0; j < 4; j++)
+                {
+                    displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                    displayGrid.ColumnDefinitions[j].Width = new GridLength(180);
+                } // for j
+            } // for i
+            PlaceEmptyPegs(displayGrid);
             gridBoard.Children.Add(displayGrid);
 
             // Create grid for the feedback pegs
@@ -124,8 +128,8 @@ namespace Mastermind
                 Name = "FeedbackGrid",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
-                Height = 100 * _rows,
-                Width = 100 * _rows,
+                Height = 1000,
+                Width = 1000,
                 Background = new SolidColorBrush(Colors.Blue),
                 Margin = new Thickness(5)
             };
@@ -143,8 +147,8 @@ namespace Mastermind
                 Name = "ChooseGrid",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
-                Height = 100 * _rows,
-                Width = 100 * _rows,
+                Height = 1000,
+                Width = 1000,
                 Margin = new Thickness(5)
             };
             chooseGrid.SetValue(Grid.RowProperty, 2);
@@ -238,5 +242,41 @@ namespace Mastermind
             } // for i
         } // PlaceChoosePegs()
 
-    }
+
+        private void PlaceEmptyPegs(Grid displayGrid)
+        {
+            Ellipse emptyPeg;
+            StackPanel stackPanel;
+            for (i = 0; i < _rows; i++)
+            {
+                for (j = 0; j < 4; j++)
+                {
+                    stackPanel = new StackPanel()
+                    {
+                        Height = 80,
+                        Width = 80,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    };
+
+                    emptyPeg = new Ellipse
+                    {
+                        Name = "emptyPeg " + (i + 1).ToString(),
+                        Height = 80,
+                        Width = 80,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Fill = new SolidColorBrush(Colors.Gray)
+                    };
+
+                    emptyPeg.SetValue(Grid.RowProperty, i);
+                    emptyPeg.SetValue(Grid.ColumnProperty, j);
+                    stackPanel.SetValue(Grid.RowProperty, i);
+                    stackPanel.SetValue(Grid.ColumnProperty, j);
+                    stackPanel.Children.Add(emptyPeg);
+                    displayGrid.Children.Add(stackPanel);
+                } // for j
+            } // for i
+        } // PlaceEmptyPegs()
+    } // main
 }

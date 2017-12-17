@@ -9,7 +9,7 @@
 
     <Grid x:Name="parentGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height=".25*"/>
+            <RowDefinition Height=".15*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
