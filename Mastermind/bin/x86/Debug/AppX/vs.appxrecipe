@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-12-15T12:52:31.937</Modified>
+      <Modified>2017-12-17T14:44:11.160</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Mastermind.exe">
       <PackagePath>entrypoint\Mastermind.exe</PackagePath>
-      <Modified>2017-12-15T12:52:31.268</Modified>
+      <Modified>2017-12-17T14:44:09.579</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\.nuget\packages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -495,9 +495,13 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2016-06-11T22:15:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Properties\Default.rd.xml">
-      <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2017-12-15T10:57:22.944</Modified>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Mastermind_Logo.jpg">
+      <PackagePath>Assets\Mastermind_Logo.jpg</PackagePath>
+      <Modified>2017-12-17T13:12:16.968</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Mastermind_Logo.png">
+      <PackagePath>Assets\Mastermind_Logo.png</PackagePath>
+      <Modified>2017-12-17T14:43:07.057</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -533,9 +537,13 @@
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2017-10-18T10:11:56.527</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
+      <Modified>2017-12-15T10:57:22.944</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Mastermind.xr.xml">
       <PackagePath>Mastermind.xr.xml</PackagePath>
-      <Modified>2017-12-15T12:52:31.131</Modified>
+      <Modified>2017-12-17T13:16:03.757</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -544,11 +552,11 @@
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-12-15T12:52:31.702</Modified>
+      <Modified>2017-12-17T14:44:10.707</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Core\Mastermind.exe">
       <PackagePath>Mastermind.exe</PackagePath>
-      <Modified>2017-12-15T12:52:31.930</Modified>
+      <Modified>2017-12-17T14:44:11.151</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

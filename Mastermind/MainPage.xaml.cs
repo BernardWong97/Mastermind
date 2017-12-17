@@ -35,18 +35,23 @@ namespace Mastermind
             this.InitializeComponent();
         }
 
-        // Method fire check button event
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        // Method fire click button event
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Sender
-            RadioButton current = (RadioButton)sender;
-  
+            Button current = (Button)sender;
+
             // Generate Board
-            createBoard();
-        } // RadioButton_Checked()
+            CreateBoard();
+
+            // Disable and Invisible after button clicked
+            current.IsEnabled = false;
+            current.Visibility = Visibility.Collapsed;
+            parentGrid.Children.Remove(FindName("startPanel") as StackPanel);
+        } // Button_Click()
 
         // Method create board
-        private void createBoard()
+        private void CreateBoard()
         {
             // Create grid for the gameboard
             Grid gridBoard = new Grid
@@ -54,12 +59,13 @@ namespace Mastermind
                 Name = "GameBoard",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
-                Height = 75 * _rows,
-                Width = 75 * _rows,
-                Background = new SolidColorBrush(Colors.Gray),
-                Margin = new Thickness(5)
+                Height = 100 * _rows,
+                Width = 100 * _rows,
+                Background = new SolidColorBrush(Colors.MintCream),
+                Margin = new Thickness(5),
             };
             gridBoard.SetValue(Grid.RowProperty, 2);
+            gridBoard.SetValue(Grid.ColumnProperty, 2);
 
             // Add rows number of row definitions and column definitions
             for (i = 0; i < _rows; i++)

@@ -8,14 +8,23 @@
     mc:Ignorable="d">
 
     <Grid x:Name="parentGrid">
-        <RadioButton Content="Start" Tag="start" Checked="RadioButton_Checked" />
         <Grid.RowDefinitions>
             <RowDefinition Height=".25*"/>
-            <RowDefinition />
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width=".25*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <Border Grid.RowSpan = "2" Grid.ColumnSpan = "2" Background = "#FFFCD3"/>
+        <Image  Grid.ColumnSpan = "2" Source="Assets/Mastermind_Logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Stretch="Fill" Margin="0,0,0,10"/>
+        
+        <!--Start Game Panel-->
+        <StackPanel x:Name ="startPanel" Grid.Row="2" Grid.ColumnSpan = "2" Margin="40,40,40,40" VerticalAlignment="Top">
+            <TextBlock Foreground="Black" FontSize="25" Text="Welcome to Mastermind Game! Click the button below to begin!" TextAlignment="Center"/>
+            <Button Content="Start Game" Tag="start" Click="Button_Click" Margin = "10" Width = "150" HorizontalAlignment = "Center" VerticalAlignment="Top"/>
+        </StackPanel>
+        
     </Grid>
 </Page>
