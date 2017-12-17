@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -61,7 +62,7 @@ namespace Mastermind
                 VerticalAlignment = VerticalAlignment.Top,
                 Height = 100 * _rows,
                 Width = 100 * _rows,
-                Background = new SolidColorBrush(Colors.MintCream),
+                Background = new SolidColorBrush(Colors.Gray),
                 Margin = new Thickness(5),
             };
             gridBoard.SetValue(Grid.RowProperty, 2);
@@ -144,7 +145,6 @@ namespace Mastermind
                 VerticalAlignment = VerticalAlignment.Top,
                 Height = 100 * _rows,
                 Width = 100 * _rows,
-                Background = new SolidColorBrush(Colors.Red),
                 Margin = new Thickness(5)
             };
             chooseGrid.SetValue(Grid.RowProperty, 2);
@@ -152,10 +152,91 @@ namespace Mastermind
             for(i = 0; i < 4; i++)
             {
                 chooseGrid.RowDefinitions.Add(new RowDefinition());
+                chooseGrid.RowDefinitions[i].Height = new GridLength(100);
                 chooseGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                chooseGrid.ColumnDefinitions[0].Width = new GridLength(100);
             }
+            PlaceChoosePegs(chooseGrid);
             gridBoard.Children.Add(chooseGrid);
-        } // createBoard()
+        } // CreateBoard()
+
+        private void PlaceChoosePegs(Grid chooseGrid)
+        {
+            Ellipse choosePeg;
+            StackPanel stackPanel;
+            for(i = 0; i < 2; i++)
+            {
+                for(j = 0; j < 4; j++)
+                {
+                    stackPanel = new StackPanel()
+                    {
+                        Height = 80,
+                        Width = 80,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    };
+
+                    choosePeg = new Ellipse
+                    {
+                        Height = 80,
+                        Width = 80,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+
+                    if (i == 0)
+                    {
+                        switch (j)
+                        {
+                            case 1:
+                                choosePeg.Name = "red";
+                                choosePeg.Fill = new SolidColorBrush(Colors.Red);
+                                break;
+                            case 2:
+                                choosePeg.Name = "orange";
+                                choosePeg.Fill = new SolidColorBrush(Colors.Orange);
+                                break;
+                            case 3:
+                                choosePeg.Name = "yellow";
+                                choosePeg.Fill = new SolidColorBrush(Colors.Yellow);
+                                break;
+                            case 4:
+                                choosePeg.Name = "green";
+                                choosePeg.Fill = new SolidColorBrush(Colors.Green);
+                                break;
+                        } // switch
+                    } // if
+                    else
+                    {
+                        switch (j)
+                        {
+                            case 1:
+                                choosePeg.Name = "blue";
+                                choosePeg.Fill = new SolidColorBrush(Colors.Blue);
+                                break;
+                            case 2:
+                                choosePeg.Name = "indigo";
+                                choosePeg.Fill = new SolidColorBrush(Colors.Indigo);
+                                break;
+                            case 3:
+                                choosePeg.Name = "violet";
+                                choosePeg.Fill = new SolidColorBrush(Colors.Violet);
+                                break;
+                            case 4:
+                                choosePeg.Name = "pink";
+                                choosePeg.Fill = new SolidColorBrush(Colors.Pink);
+                                break;
+                        } // switch
+                    } // else
+                    choosePeg.SetValue(Grid.RowProperty, i);
+                    choosePeg.SetValue(Grid.ColumnProperty, j);
+                    stackPanel.SetValue(Grid.RowProperty, i);
+                    stackPanel.SetValue(Grid.ColumnProperty, j);
+                    stackPanel.Children.Add(choosePeg);
+                    chooseGrid.Children.Add(stackPanel);
+                } // for j
+            } // for i
+        } // PlaceChoosePegs()
 
     }
 }
