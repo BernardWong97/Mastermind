@@ -376,6 +376,9 @@
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Mastermind_Logo.png">
       <PackagePath>Assets\Mastermind_Logo.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\questionMark.png">
+      <PackagePath>Assets\questionMark.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>

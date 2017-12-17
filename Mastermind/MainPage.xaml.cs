@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 
@@ -83,9 +84,8 @@ namespace Mastermind
                 Name = "AnswerGrid",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
-                Height = 1000,
+                Height = 100,
                 Width = 1000,
-                Background = new SolidColorBrush(Colors.Gray),
                 Margin = new Thickness(5)
             };
             answerGrid.SetValue(Grid.RowProperty, 0);
@@ -94,6 +94,7 @@ namespace Mastermind
             answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
             answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
             answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            PlaceAnswerPegs(answerGrid);
             gridBoard.Children.Add(answerGrid);
 
             // Create grid for the display pegs
@@ -104,7 +105,6 @@ namespace Mastermind
                 VerticalAlignment = VerticalAlignment.Top,
                 Height = 1000,
                 Width = 1000,
-                Background = new SolidColorBrush(Colors.Green),
                 Margin = new Thickness(5)
             };
             displayGrid.SetValue(Grid.RowProperty, 1);
@@ -130,15 +130,16 @@ namespace Mastermind
                 VerticalAlignment = VerticalAlignment.Top,
                 Height = 1000,
                 Width = 1000,
-                Background = new SolidColorBrush(Colors.Blue),
                 Margin = new Thickness(5)
             };
             feedbackGrid.SetValue(Grid.RowProperty, 1);
             feedbackGrid.SetValue(Grid.ColumnProperty, 2);
-            feedbackGrid.RowDefinitions.Add(new RowDefinition());
-            feedbackGrid.RowDefinitions.Add(new RowDefinition());
-            feedbackGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            feedbackGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            for (i = 0; i < _rows; i++)
+            {
+                feedbackGrid.RowDefinitions.Add(new RowDefinition());
+                feedbackGrid.RowDefinitions[i].Height = new GridLength(90);
+            } // for i
+            PlaceEmptyFeedbackPegs(feedbackGrid);
             gridBoard.Children.Add(feedbackGrid);
 
             // Create grid for the choose pegs
@@ -158,7 +159,6 @@ namespace Mastermind
                 chooseGrid.RowDefinitions.Add(new RowDefinition());
                 chooseGrid.RowDefinitions[i].Height = new GridLength(100);
                 chooseGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                chooseGrid.ColumnDefinitions[0].Width = new GridLength(100);
             }
             PlaceChoosePegs(chooseGrid);
             gridBoard.Children.Add(chooseGrid);
@@ -185,26 +185,28 @@ namespace Mastermind
                         Height = 80,
                         Width = 80,
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Stroke = new SolidColorBrush(Colors.Black),
+                        StrokeThickness = 2
                     };
 
                     if (i == 0)
                     {
                         switch (j)
                         {
-                            case 1:
+                            case 0:
                                 choosePeg.Name = "red";
                                 choosePeg.Fill = new SolidColorBrush(Colors.Red);
                                 break;
-                            case 2:
+                            case 1:
                                 choosePeg.Name = "orange";
                                 choosePeg.Fill = new SolidColorBrush(Colors.Orange);
                                 break;
-                            case 3:
+                            case 2:
                                 choosePeg.Name = "yellow";
                                 choosePeg.Fill = new SolidColorBrush(Colors.Yellow);
                                 break;
-                            case 4:
+                            case 3:
                                 choosePeg.Name = "green";
                                 choosePeg.Fill = new SolidColorBrush(Colors.Green);
                                 break;
@@ -214,29 +216,27 @@ namespace Mastermind
                     {
                         switch (j)
                         {
-                            case 1:
+                            case 0:
                                 choosePeg.Name = "blue";
                                 choosePeg.Fill = new SolidColorBrush(Colors.Blue);
                                 break;
-                            case 2:
+                            case 1:
                                 choosePeg.Name = "indigo";
                                 choosePeg.Fill = new SolidColorBrush(Colors.Indigo);
                                 break;
-                            case 3:
+                            case 2:
                                 choosePeg.Name = "violet";
                                 choosePeg.Fill = new SolidColorBrush(Colors.Violet);
                                 break;
-                            case 4:
+                            case 3:
                                 choosePeg.Name = "pink";
                                 choosePeg.Fill = new SolidColorBrush(Colors.Pink);
                                 break;
                         } // switch
                     } // else
-                    choosePeg.SetValue(Grid.RowProperty, i);
-                    choosePeg.SetValue(Grid.ColumnProperty, j);
+                    stackPanel.Children.Add(choosePeg);
                     stackPanel.SetValue(Grid.RowProperty, i);
                     stackPanel.SetValue(Grid.ColumnProperty, j);
-                    stackPanel.Children.Add(choosePeg);
                     chooseGrid.Children.Add(stackPanel);
                 } // for j
             } // for i
@@ -266,17 +266,98 @@ namespace Mastermind
                         Width = 80,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center,
-                        Fill = new SolidColorBrush(Colors.Gray)
+                        Fill = new SolidColorBrush(Colors.LightGray),
+                        Stroke = new SolidColorBrush(Colors.Black),
+                        StrokeThickness = 2
                     };
 
-                    emptyPeg.SetValue(Grid.RowProperty, i);
-                    emptyPeg.SetValue(Grid.ColumnProperty, j);
+                    stackPanel.Children.Add(emptyPeg);
                     stackPanel.SetValue(Grid.RowProperty, i);
                     stackPanel.SetValue(Grid.ColumnProperty, j);
-                    stackPanel.Children.Add(emptyPeg);
                     displayGrid.Children.Add(stackPanel);
                 } // for j
             } // for i
         } // PlaceEmptyPegs()
+
+        private void PlaceEmptyFeedbackPegs(Grid feedbackGrid)
+        {
+            Ellipse emptyPeg;
+            Grid smallGrid;
+            for (i = 0; i < _rows; i++)
+            {
+                smallGrid = new Grid()
+                {
+                    Name = "smallGrid" + (i+1).ToString(),
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Height = 80,
+                    Width = 80,
+                    Background = new SolidColorBrush(Colors.SandyBrown),
+                    Margin = new Thickness(2)
+                };
+                smallGrid.RowDefinitions.Add(new RowDefinition());
+                smallGrid.RowDefinitions.Add(new RowDefinition());
+                smallGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                smallGrid.ColumnDefinitions.Add(new ColumnDefinition());
+
+                for(j = 0; j < 2; j++)
+                {
+                    for(int k = 0; k < 2; k++)
+                    {
+                        emptyPeg = new Ellipse
+                        {
+                            Name = "emptyFeedbackPeg " + (i + 1).ToString() + " " + (j + 1).ToString(),
+                            Height = 22.5,
+                            Width = 22.5,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                            VerticalAlignment = VerticalAlignment.Center,
+                            Fill = new SolidColorBrush(Colors.LightGray),
+                            Stroke = new SolidColorBrush(Colors.Black),
+                            StrokeThickness = 2
+                        };
+                        emptyPeg.SetValue(Grid.RowProperty, j);
+                        emptyPeg.SetValue(Grid.ColumnProperty, k);
+                        smallGrid.Children.Add(emptyPeg);
+                    } // for k
+                } // for j
+
+                smallGrid.SetValue(Grid.RowProperty, i);
+                feedbackGrid.Children.Add(smallGrid);
+            } // for i
+        } // PlaceEmptyFeedbackPegs
+
+        private void PlaceAnswerPegs(Grid answerGrid)
+        {
+            Ellipse questionPeg;
+            StackPanel stackPanel;
+            ImageBrush ellipseBackground = new ImageBrush();
+            ellipseBackground.ImageSource = new BitmapImage(new Uri("ms-appx:/Assets/questionMark.png", UriKind.Absolute));
+            for (i = 0; i < 4; i++)
+            {
+
+                stackPanel = new StackPanel()
+                {
+                    Height = 80,
+                    Width = 80,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                };
+
+                questionPeg = new Ellipse
+                {
+                    Name = "questionPeg " + (i + 1).ToString(),
+                    Height = 80,
+                    Width = 80,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Stroke = new SolidColorBrush(Colors.Black),
+                    StrokeThickness = 2,
+                    Fill = ellipseBackground
+                };
+                stackPanel.Children.Add(questionPeg);
+                stackPanel.SetValue(Grid.ColumnProperty, i);
+                answerGrid.Children.Add(stackPanel);
+            } // for i
+        } // PlaceAnswerPegs()
     } // main
-}
+} // namespace
