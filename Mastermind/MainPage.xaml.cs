@@ -37,25 +37,11 @@ namespace Mastermind
             this.InitializeComponent();
         }
 
-        // Method fire click button event
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // Sender
-            Button current = (Button)sender;
-
-            // Generate Board
-            CreateBoard();
-
-            // Disable and Invisible after button clicked
-            current.IsEnabled = false;
-            current.Visibility = Visibility.Collapsed;
-            parentGrid.Children.Remove(FindName("startPanel") as StackPanel);
-        } // Button_Click()
-
         // Method create board
         private void CreateBoard()
         {
             // Create grid for the gameboard
+            #region gridBoard
             Grid gridBoard = new Grid
             {
                 Name = "GameBoard",
@@ -77,8 +63,10 @@ namespace Mastermind
             gridBoard.RowDefinitions[2].Height = new GridLength(400);
             gridBoard.ColumnDefinitions[1].Width = new GridLength(250);
             parentGrid.Children.Add(gridBoard);
+            #endregion
 
             // Create grid for the answer pegs
+            #region answerGrid
             Grid answerGrid = new Grid
             {
                 Name = "AnswerGrid",
@@ -96,8 +84,10 @@ namespace Mastermind
             answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
             PlaceAnswerPegs(answerGrid);
             gridBoard.Children.Add(answerGrid);
+            #endregion
 
             // Create grid for the display pegs
+            #region displayGrid
             Grid displayGrid = new Grid
             {
                 Name = "DisplayGrid",
@@ -121,8 +111,10 @@ namespace Mastermind
             } // for i
             PlaceEmptyPegs(displayGrid);
             gridBoard.Children.Add(displayGrid);
+            #endregion
 
             // Create grid for the feedback pegs
+            #region feedbackGrid
             Grid feedbackGrid = new Grid
             {
                 Name = "FeedbackGrid",
@@ -141,8 +133,10 @@ namespace Mastermind
             } // for i
             PlaceEmptyFeedbackPegs(feedbackGrid);
             gridBoard.Children.Add(feedbackGrid);
+            #endregion
 
             // Create grid for the choose pegs
+            #region chooseGrid
             Grid chooseGrid = new Grid
             {
                 Name = "ChooseGrid",
@@ -162,12 +156,17 @@ namespace Mastermind
             }
             PlaceChoosePegs(chooseGrid);
             gridBoard.Children.Add(chooseGrid);
+            #endregion
         } // CreateBoard()
 
+        #region Place Pegs on Boards Methods
+        // Method place pegs that user can choose
         private void PlaceChoosePegs(Grid chooseGrid)
         {
+            // Variables
             Ellipse choosePeg;
             StackPanel stackPanel;
+            // For loop 2 rows and 4 columns
             for(i = 0; i < 2; i++)
             {
                 for(j = 0; j < 4; j++)
@@ -190,6 +189,7 @@ namespace Mastermind
                         StrokeThickness = 2
                     };
 
+                    // each pegs different colors
                     if (i == 0)
                     {
                         switch (j)
@@ -234,6 +234,8 @@ namespace Mastermind
                                 break;
                         } // switch
                     } // else
+
+                    // Add to parent
                     stackPanel.Children.Add(choosePeg);
                     stackPanel.SetValue(Grid.RowProperty, i);
                     stackPanel.SetValue(Grid.ColumnProperty, j);
@@ -242,11 +244,14 @@ namespace Mastermind
             } // for i
         } // PlaceChoosePegs()
 
-
+        // Method place empty pegs into the board
         private void PlaceEmptyPegs(Grid displayGrid)
         {
+            // Variables
             Ellipse emptyPeg;
             StackPanel stackPanel;
+
+            // For loop 5 rows 4 column
             for (i = 0; i < _rows; i++)
             {
                 for (j = 0; j < 4; j++)
@@ -271,6 +276,7 @@ namespace Mastermind
                         StrokeThickness = 2
                     };
 
+                    // Add to parent
                     stackPanel.Children.Add(emptyPeg);
                     stackPanel.SetValue(Grid.RowProperty, i);
                     stackPanel.SetValue(Grid.ColumnProperty, j);
@@ -279,12 +285,17 @@ namespace Mastermind
             } // for i
         } // PlaceEmptyPegs()
 
+        // Method place empty feedback pegs into the board
         private void PlaceEmptyFeedbackPegs(Grid feedbackGrid)
         {
+            // Variables
             Ellipse emptyPeg;
             Grid smallGrid;
+
+            // For loop 5 rows
             for (i = 0; i < _rows; i++)
             {
+                // Create a smaller grid 2x2 to put pegs
                 smallGrid = new Grid()
                 {
                     Name = "smallGrid" + (i+1).ToString(),
@@ -300,6 +311,7 @@ namespace Mastermind
                 smallGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 smallGrid.ColumnDefinitions.Add(new ColumnDefinition());
 
+                // For loop 2 rows 2 columns
                 for(j = 0; j < 2; j++)
                 {
                     for(int k = 0; k < 2; k++)
@@ -321,20 +333,25 @@ namespace Mastermind
                     } // for k
                 } // for j
 
+                // Add to parent
                 smallGrid.SetValue(Grid.RowProperty, i);
                 feedbackGrid.Children.Add(smallGrid);
             } // for i
         } // PlaceEmptyFeedbackPegs
 
+        // Method place answer pegs into the board
         private void PlaceAnswerPegs(Grid answerGrid)
         {
+            // Variables
             Ellipse questionPeg;
             StackPanel stackPanel;
+            // Image brush for the ellipse texture
             ImageBrush ellipseBackground = new ImageBrush();
             ellipseBackground.ImageSource = new BitmapImage(new Uri("ms-appx:/Assets/questionMark.png", UriKind.Absolute));
+
+            // For loop 4 columns
             for (i = 0; i < 4; i++)
             {
-
                 stackPanel = new StackPanel()
                 {
                     Height = 80,
@@ -354,10 +371,28 @@ namespace Mastermind
                     StrokeThickness = 2,
                     Fill = ellipseBackground
                 };
+
+                // Add to parent
                 stackPanel.Children.Add(questionPeg);
                 stackPanel.SetValue(Grid.ColumnProperty, i);
                 answerGrid.Children.Add(stackPanel);
             } // for i
         } // PlaceAnswerPegs()
+        #endregion        
+        
+        // Method fire click button event
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Sender
+            Button current = (Button)sender;
+
+            // Generate Board
+            CreateBoard();
+
+            // Disable and Invisible after button clicked
+            current.IsEnabled = false;
+            current.Visibility = Visibility.Collapsed;
+            parentGrid.Children.Remove(FindName("startPanel") as StackPanel);
+        } // Button_Click()
     } // main
 } // namespace
