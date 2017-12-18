@@ -27,9 +27,12 @@ namespace Mastermind
     {
         #region Global Variables
         // Constants
-        private const int _rows = 5;
+        private const int _rows = 5, _columns = 4;
         // Variables
         private int i, j;
+        private int currentRow = 0, currentColumn = 0;
+
+        public Grid chooseGrid { get; private set; }
         #endregion
 
         public MainPage()
@@ -103,7 +106,7 @@ namespace Mastermind
             {
                 displayGrid.RowDefinitions.Add(new RowDefinition());
                 displayGrid.RowDefinitions[i].Height = new GridLength(90);
-                for (j = 0; j < 4; j++)
+                for (j = 0; j < _columns; j++)
                 {
                     displayGrid.ColumnDefinitions.Add(new ColumnDefinition());
                     displayGrid.ColumnDefinitions[j].Width = new GridLength(180);
@@ -148,7 +151,7 @@ namespace Mastermind
             };
             chooseGrid.SetValue(Grid.RowProperty, 2);
             chooseGrid.SetValue(Grid.ColumnSpanProperty, 2);
-            for(i = 0; i < 4; i++)
+            for(i = 0; i < _columns; i++)
             {
                 chooseGrid.RowDefinitions.Add(new RowDefinition());
                 chooseGrid.RowDefinitions[i].Height = new GridLength(100);
@@ -169,7 +172,7 @@ namespace Mastermind
             // For loop 2 rows and 4 columns
             for(i = 0; i < 2; i++)
             {
-                for(j = 0; j < 4; j++)
+                for(j = 0; j < _columns; j++)
                 {
                     stackPanel = new StackPanel()
                     {
@@ -235,6 +238,9 @@ namespace Mastermind
                         } // switch
                     } // else
 
+                    // Tapped event
+                    choosePeg.Tapped += Choose_Tapped;
+
                     // Add to parent
                     stackPanel.Children.Add(choosePeg);
                     stackPanel.SetValue(Grid.RowProperty, i);
@@ -254,7 +260,7 @@ namespace Mastermind
             // For loop 5 rows 4 column
             for (i = 0; i < _rows; i++)
             {
-                for (j = 0; j < 4; j++)
+                for (j = 0; j < _columns; j++)
                 {
                     stackPanel = new StackPanel()
                     {
@@ -266,7 +272,7 @@ namespace Mastermind
 
                     emptyPeg = new Ellipse
                     {
-                        Name = "emptyPeg " + (i + 1).ToString(),
+                        Name = "emptyPeg " + (i + 1).ToString() + " " + (j + 1).ToString(),
                         Height = 80,
                         Width = 80,
                         HorizontalAlignment = HorizontalAlignment.Center,
@@ -350,7 +356,7 @@ namespace Mastermind
             ellipseBackground.ImageSource = new BitmapImage(new Uri("ms-appx:/Assets/questionMark.png", UriKind.Absolute));
 
             // For loop 4 columns
-            for (i = 0; i < 4; i++)
+            for (i = 0; i < _columns; i++)
             {
                 stackPanel = new StackPanel()
                 {
@@ -394,5 +400,31 @@ namespace Mastermind
             current.Visibility = Visibility.Collapsed;
             parentGrid.Children.Remove(FindName("startPanel") as StackPanel);
         } // Button_Click()
+
+        // Method fire tapped ellipse event
+        private void Choose_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            // Variables
+            Ellipse current = (Ellipse)sender;
+            Ellipse selectPeg;
+
+            // If game finish
+            if (currentRow == 4 && currentColumn == 4)
+                return;
+
+            // if 4th column, change to next row 1st column
+            if (currentColumn == 4)
+            {
+                currentColumn = 0;
+                currentRow++;
+            } // if
+
+            // Plant the tapped peg into the empty current turn peg
+            selectPeg = FindName("emptyPeg " + (currentRow + 1).ToString() + " " + (currentColumn + 1).ToString()) as Ellipse;
+            selectPeg.Fill = current.Fill;
+
+            // increment current column
+            currentColumn++;
+        } // Choose.Tapped()
     } // main
 } // namespace

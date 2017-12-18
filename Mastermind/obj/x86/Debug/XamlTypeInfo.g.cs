@@ -132,15 +132,17 @@ namespace Mastermind.Mastermind_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[3];
+            _typeNameTable = new string[4];
             _typeNameTable[0] = "Mastermind.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[3] = "Windows.UI.Xaml.Controls.Grid";
 
-            _typeTable = new global::System.Type[3];
+            _typeTable = new global::System.Type[4];
             _typeTable[0] = typeof(global::Mastermind.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[3] = typeof(global::Windows.UI.Xaml.Controls.Grid);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -190,6 +192,7 @@ namespace Mastermind.Mastermind_XamlTypeInfo
             case 0:   //  Mastermind.MainPage
                 userType = new global::Mastermind.Mastermind_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_0_MainPage;
+                userType.AddMemberName("chooseGrid");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -201,16 +204,35 @@ namespace Mastermind.Mastermind_XamlTypeInfo
             case 2:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::Mastermind.Mastermind_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
+
+            case 3:   //  Windows.UI.Xaml.Controls.Grid
+                xamlType = new global::Mastermind.Mastermind_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
             }
             return xamlType;
         }
 
 
+        private object get_0_MainPage_chooseGrid(object instance)
+        {
+            var that = (global::Mastermind.MainPage)instance;
+            return that.chooseGrid;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::Mastermind.Mastermind_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::Mastermind.Mastermind_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "Mastermind.MainPage.chooseGrid":
+                userType = (global::Mastermind.Mastermind_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Mastermind.MainPage");
+                xamlMember = new global::Mastermind.Mastermind_XamlTypeInfo.XamlMember(this, "chooseGrid", "Windows.UI.Xaml.Controls.Grid");
+                xamlMember.Getter = get_0_MainPage_chooseGrid;
+                xamlMember.SetIsReadOnly();
+                break;
+            }
             return xamlMember;
         }
     }
