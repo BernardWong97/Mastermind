@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <UseSimulator>false</UseSimulator>
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <UseEmulator>false</UseEmulator>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AppxPackageIsForStore>True</AppxPackageIsForStore>
+    <AppxShowAllApps>False</AppxShowAllApps>
+    <AppxBuildConfigurationSelection>x86|x64|arm</AppxBuildConfigurationSelection>
+    <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+    <Source>C:\Users\ASUS\Pictures\mastermindLogo.png</Source>
+    <SmallTileSource>C:\Users\ASUS\Pictures\mastermindLogo.png</SmallTileSource>
+    <MediumTileSource>C:\Users\ASUS\Pictures\mastermindLogo.png</MediumTileSource>
+    <WideTileSource>C:\Users\ASUS\Pictures\mastermindLogo.png</WideTileSource>
+    <LargeTileSource>C:\Users\ASUS\Pictures\mastermindLogo.png</LargeTileSource>
+    <AppIconSource>C:\Users\ASUS\Pictures\mastermindLogo.png</AppIconSource>
+    <SplashScreenSource>C:\Users\ASUS\Pictures\mastermindLogo.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\ASUS\Pictures\mastermindLogo.png</PackageLogoSource>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
+</Project>

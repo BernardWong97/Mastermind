@@ -1,0 +1,2 @@
+MainPackage=C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x64\Release\Upload\Mastermind_1.1.1.0_x64.appx
+SymbolPackage=C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x64\Release\Upload\Mastermind_1.1.1.0\Mastermind_1.1.1.0_x64.appxsym

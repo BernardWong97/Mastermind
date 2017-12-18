@@ -8,8 +8,8 @@
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
     <SolutionConfiguration>Debug|x86</SolutionConfiguration>
     <PackageArchitecture>x86</PackageArchitecture>
-    <PackageIdentityName>28cf5683-1815-4f8b-9555-216da9226429</PackageIdentityName>
-    <PackageIdentityPublisher>CN=ASUS</PackageIdentityPublisher>
+    <PackageIdentityName>810f196e-8c83-4fe7-ac7e-59bc9d8e377d</PackageIdentityName>
+    <PackageIdentityPublisher>CN=1C7BA0C8-118C-4482-87AB-6249F56CFE62</PackageIdentityPublisher>
     <IntermediateOutputPath>C:\Users\ASUS\source\repos\Mastermind\Mastermind\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
@@ -19,25 +19,25 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>BA45ACA3D0ABF19ACAC981E06E87EA469982034BEA9C0C10353F4ED4E7792E1E</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>28cf5683-1815-4f8b-9555-216da9226429_1.0.0.0_x86__wkbqm3a0n06q2</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>28cf5683-1815-4f8b-9555-216da9226429_wkbqm3a0n06q2!App</RegisteredUserModeAppID>
-    <RegisteredPackageID>28cf5683-1815-4f8b-9555-216da9226429</RegisteredPackageID>
-    <RegisteredPackagePublisher>CN=ASUS</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <RegisteredManifestChecksum>1BC8ED6B2ABC43361F0886DE4B47A71B99487C34DB26C272D2A4C6B441A2A6BF</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>32260BernardWong.MastermindSimple_1.1.1.0_x86__43y839s33d1vg</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>32260BernardWong.MastermindSimple_43y839s33d1vg!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>32260BernardWong.MastermindSimple</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=1C7BA0C8-118C-4482-87AB-6249F56CFE62</RegisteredPackagePublisher>
+    <RegisteredVersion>1.1.1.0</RegisteredVersion>
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-12-18T17:30:33.438</Modified>
+      <Modified>2017-12-18T18:15:28.869</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Mastermind.exe">
       <PackagePath>entrypoint\Mastermind.exe</PackagePath>
-      <Modified>2017-12-18T17:30:33.170</Modified>
+      <Modified>2017-12-18T18:15:28.082</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\.nuget\packages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -495,9 +495,30 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2016-06-11T22:15:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Mastermind_Logo.jpg">
-      <PackagePath>Assets\Mastermind_Logo.jpg</PackagePath>
-      <Modified>2017-12-17T13:12:16.968</Modified>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\LargeTile.scale-100.png">
+      <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.160</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\LargeTile.scale-125.png">
+      <PackagePath>Assets\LargeTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.185</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\LargeTile.scale-150.png">
+      <PackagePath>Assets\LargeTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.219</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\LargeTile.scale-200.png">
+      <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.271</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\LargeTile.scale-400.png">
+      <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.450</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Mastermind_Logo.png">
       <PackagePath>Assets\Mastermind_Logo.png</PackagePath>
@@ -507,6 +528,181 @@
       <PackagePath>Assets\questionMark.png</PackagePath>
       <Modified>2017-12-17T22:28:06.576</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SmallTile.scale-100.png">
+      <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.782</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SmallTile.scale-125.png">
+      <PackagePath>Assets\SmallTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.794</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SmallTile.scale-150.png">
+      <PackagePath>Assets\SmallTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.803</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SmallTile.scale-200.png">
+      <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.816</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SmallTile.scale-400.png">
+      <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.838</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.645</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SplashScreen.scale-125.png">
+      <PackagePath>Assets\SplashScreen.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.687</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SplashScreen.scale-150.png">
+      <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.742</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SplashScreen.scale-400.png">
+      <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:14.195</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square150x150Logo.scale-100.png">
+      <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.852</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square150x150Logo.scale-125.png">
+      <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.867</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square150x150Logo.scale-150.png">
+      <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.883</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square150x150Logo.scale-400.png">
+      <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.962</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.568</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.616</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.586</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.595</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.scale-100.png">
+      <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.465</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.scale-125.png">
+      <PackagePath>Assets\Square44x44Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.477</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.scale-150.png">
+      <PackagePath>Assets\Square44x44Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.487</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.scale-400.png">
+      <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.509</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.517</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.targetsize-24.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.524</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.560</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.533</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.541</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:14.205</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\StoreLogo.scale-125.png">
+      <PackagePath>Assets\StoreLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:14.213</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\StoreLogo.scale-150.png">
+      <PackagePath>Assets\StoreLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:14.223</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\StoreLogo.scale-200.png">
+      <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:14.234</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\StoreLogo.scale-400.png">
+      <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:14.249</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Wide310x150Logo.scale-100.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.980</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Wide310x150Logo.scale-125.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:12.996</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Wide310x150Logo.scale-150.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.016</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Wide310x150Logo.scale-400.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2017-12-18T18:03:13.139</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2017-10-18T10:11:56.527</Modified>
@@ -514,32 +710,31 @@
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-10-18T10:11:56.527</Modified>
+      <Modified>2017-12-18T18:03:13.831</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-10-18T10:11:56.527</Modified>
+      <Modified>2017-12-18T18:03:12.902</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-10-18T10:11:56.527</Modified>
+      <Modified>2017-12-18T18:03:13.495</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-10-18T10:11:56.527</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\StoreLogo.png">
-      <PackagePath>Assets\StoreLogo.png</PackagePath>
-      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-10-18T10:11:56.527</Modified>
+      <Modified>2017-12-18T18:03:13.576</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-10-18T10:11:56.527</Modified>
+      <Modified>2017-12-18T18:03:13.047</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Assets\Mastermind_Logo.jpg">
+      <PackagePath>Assets\Mastermind_Logo.jpg</PackagePath>
+      <Modified>2017-12-17T13:12:16.968</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -556,11 +751,11 @@
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-12-17T22:35:36.047</Modified>
+      <Modified>2017-12-18T18:15:28.559</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Core\Mastermind.exe">
       <PackagePath>Mastermind.exe</PackagePath>
-      <Modified>2017-12-18T17:30:33.434</Modified>
+      <Modified>2017-12-18T18:15:28.864</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

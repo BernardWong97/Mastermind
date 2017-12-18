@@ -7,11 +7,11 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="28cf5683-1815-4f8b-9555-216da9226429" Publisher="CN=ASUS" Version="1.0.0.0" ProcessorArchitecture="x86" />
-  <mp:PhoneIdentity PhoneProductId="28cf5683-1815-4f8b-9555-216da9226429" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="32260BernardWong.MastermindSimple" Publisher="CN=1C7BA0C8-118C-4482-87AB-6249F56CFE62" Version="1.1.1.0" ProcessorArchitecture="x86" />
+  <mp:PhoneIdentity PhoneProductId="810f196e-8c83-4fe7-ac7e-59bc9d8e377d" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Mastermind</DisplayName>
-    <PublisherDisplayName>ASUS</PublisherDisplayName>
+    <DisplayName>Mastermind_Simple</DisplayName>
+    <PublisherDisplayName>Bernard Wong</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -22,8 +22,8 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="Mastermind.exe" EntryPoint="Mastermind.App">
-      <uap:VisualElements DisplayName="Mastermind" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Mastermind" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+      <uap:VisualElements DisplayName="Mastermind_Simple" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="A simple Mastermind board game." BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png"></uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
