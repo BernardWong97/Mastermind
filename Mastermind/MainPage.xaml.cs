@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -21,7 +12,7 @@ using Windows.UI.Xaml.Shapes;
 namespace Mastermind
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Bernard Wong - G00341962 - Mastermind Game
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -33,8 +24,10 @@ namespace Mastermind
         private int currentRow = 0, currentColumn = 0;
         private Ellipse answerPeg1, answerPeg2, answerPeg3, answerPeg4;
         private Random randomNumber = new Random();
+        private Boolean win = false;
 
         public Grid chooseGrid { get; private set; }
+        public Ellipse choosePeg { get; private set; }
         #endregion
 
         public MainPage()
@@ -383,7 +376,7 @@ namespace Mastermind
                     Fill = ellipseBackground
                 };
 
-                // Create answer pegs
+                // Create answer pegs with while loop prevent duplicate colors
                 if (i == 0)
                 {
                     answerPeg1 = CreateAnswerPegs(i);
@@ -392,16 +385,25 @@ namespace Mastermind
                 else if (i == 1)
                 {
                     answerPeg2 = CreateAnswerPegs(i);
+                    while (((SolidColorBrush)answerPeg2.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color)
+                        answerPeg2 = CreateAnswerPegs(i);
                     questionPeg.Fill = answerPeg2.Fill;
                 }
                 else if (i == 2)
                 {
                     answerPeg3 = CreateAnswerPegs(i);
+                    while (((SolidColorBrush)answerPeg3.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
+                            || ((SolidColorBrush)answerPeg3.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color)
+                        answerPeg3 = CreateAnswerPegs(i);
                     questionPeg.Fill = answerPeg3.Fill;
                 }
                 else
                 {
                     answerPeg4 = CreateAnswerPegs(i);
+                    while (((SolidColorBrush)answerPeg4.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color
+                        || ((SolidColorBrush)answerPeg4.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
+                        || ((SolidColorBrush)answerPeg4.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color)
+                        answerPeg4 = CreateAnswerPegs(i);
                     questionPeg.Fill = answerPeg4.Fill;
                 } // if..else..if
 
@@ -411,8 +413,9 @@ namespace Mastermind
                 answerGrid.Children.Add(stackPanel);
             } // for i
         } // PlaceAnswerPegs()
-        #endregion        
-        
+        #endregion
+
+        #region Event handlers
         // Method fire click button event
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -421,6 +424,18 @@ namespace Mastermind
 
             // Generate Board
             CreateBoard();
+
+            // Try remove useless grid
+            try
+            {
+                parentGrid.Children.Remove(FindName("GameOverGrid") as Grid);
+            }
+            catch{}
+
+            // Reset Variables
+            currentRow = 0;
+            currentColumn = 0;
+            win = false;
 
             // Disable and Invisible after button clicked
             current.IsEnabled = false;
@@ -437,7 +452,10 @@ namespace Mastermind
 
             // If game finish
             if (currentRow == 4 && currentColumn == 4)
+            {
+                GameOver();
                 return;
+            } // if
 
             // if 4th column, change to next row 1st column
             if (currentColumn == 4)
@@ -457,7 +475,9 @@ namespace Mastermind
             // increment current column
             currentColumn++;
         } // Choose.Tapped()
+        #endregion
 
+        #region Additional Methods
         // Method create answer pegs
         private Ellipse CreateAnswerPegs(int i)
         {
@@ -555,46 +575,127 @@ namespace Mastermind
 
             #region white pegs
             // if color match but wrong position
-            if(feedbackPegNum < 5)
-            {
-                if (((SolidColorBrush)currentPeg1.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
+            if (feedbackPegNum < 5 
+                && ((SolidColorBrush)currentPeg1.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
                 || ((SolidColorBrush)currentPeg1.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color
                 || ((SolidColorBrush)currentPeg1.Fill).Color == ((SolidColorBrush)answerPeg4.Fill).Color)
-                {
-                    currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
-                    currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
-                    feedbackPegNum++;
-                }
+            {
+                currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
+                feedbackPegNum++;
+            } // if
 
-                if (((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color
-                    || ((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color
-                    || ((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg4.Fill).Color)
-                {
-                    currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
-                    currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
-                    feedbackPegNum++;
-                }
-                if (((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color
-                    || ((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
-                    || ((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg4.Fill).Color)
-                {
-                    currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
-                    currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
-                    feedbackPegNum++;
-                }
-                if (((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color
-                    || ((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
-                    || ((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color)
-                {
-                    currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
-                    currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
-                    feedbackPegNum++;
-                }
-            } // if feedbackPegNum < 5
-            
+            if (feedbackPegNum < 5
+                && ((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color
+                || ((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color
+                || ((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg4.Fill).Color)
+            {
+                currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
+                feedbackPegNum++;
+            } // if
+            if (feedbackPegNum < 5
+                && ((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color
+                || ((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
+                || ((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg4.Fill).Color)
+            {
+                currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
+                feedbackPegNum++;
+            } // if
+            if (feedbackPegNum < 5
+                && ((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color
+                || ((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
+                || ((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color)
+            {
+                currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
+                feedbackPegNum++;
+            } // if
             #endregion
 
+            // if user win the game
+            Ellipse forthFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (4).ToString()) as Ellipse;
+            SolidColorBrush black = new SolidColorBrush(Colors.Black);
+            if (((SolidColorBrush)forthFeedbackPeg.Fill).Color == black.Color)
+            {
+                win = true;
+                GameOver();
+            } // if
+                
         } // FeedbackPegs()
+
+        // Method Game Over
+        private void GameOver()
+        {
+            // Variables
+            Grid gameOverGrid;
+            StackPanel stackPanel;
+            TextBlock textBlock;
+            Button restartBtn;
+
+            // Try remove the game board
+            gameOverGrid = new Grid()
+            {
+                Name = "GameOverGrid",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = 1000,
+                Width = 1000,
+                Background = new SolidColorBrush(Colors.MintCream),
+                Margin = new Thickness(5)
+            };
+            gameOverGrid.RowDefinitions.Add(new RowDefinition());
+            gameOverGrid.SetValue(Grid.RowProperty, 2);
+            gameOverGrid.SetValue(Grid.ColumnProperty, 0);
+
+            stackPanel = new StackPanel()
+            {
+                Height = 1000,
+                Width = 1000,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+
+            textBlock = new TextBlock()
+            {
+                Height = 500,
+                Width = 500,
+                Foreground = new SolidColorBrush(Colors.Red),
+                FontSize = 20,
+                TextAlignment = TextAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+
+            if (win)
+            {
+                textBlock.Text = "Game Over! You Win!";
+            }
+            else
+            {
+                textBlock.Text = "Game Over! You Lose!";
+            } // if
+
+            restartBtn = new Button()
+            {
+                Content = "Play Again",
+                Tag = "restart",
+                Margin = new Thickness(10),
+                Width = 150,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top
+            };
+
+            restartBtn.Click += Button_Click;
+
+            stackPanel.Children.Add(textBlock);
+            stackPanel.Children.Add(restartBtn);
+            stackPanel.SetValue(Grid.RowProperty, 0);
+            gameOverGrid.Children.Add(stackPanel);
+            parentGrid.Children.Add(gameOverGrid);
+        } // GameOver()
+        #endregion
 
     } // main
 } // namespace
