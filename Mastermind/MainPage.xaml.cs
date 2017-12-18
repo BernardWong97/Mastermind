@@ -23,6 +23,7 @@ namespace Mastermind
         private int i, j;
         private int currentRow = 0, currentColumn = 0;
         private Ellipse answerPeg1, answerPeg2, answerPeg3, answerPeg4;
+        private Border frame;
         private Random randomNumber = new Random();
         private Boolean win = false;
 
@@ -60,6 +61,17 @@ namespace Mastermind
             gridBoard.RowDefinitions[0].Height = new GridLength(100);
             gridBoard.RowDefinitions[2].Height = new GridLength(400);
             gridBoard.ColumnDefinitions[1].Width = new GridLength(250);
+
+            // Frame the grid
+            frame = new Border()
+            {
+                BorderBrush = new SolidColorBrush(Colors.Black),
+                BorderThickness = new Thickness(2)
+            };
+            frame.SetValue(Grid.RowSpanProperty, 3);
+            frame.SetValue(Grid.ColumnSpanProperty, 2);
+            gridBoard.Children.Add(frame);
+
             parentGrid.Children.Add(gridBoard);
             #endregion
 
@@ -80,7 +92,17 @@ namespace Mastermind
             answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
             answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
             answerGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            PlaceAnswerPegs(answerGrid);
+
+            // Frame the grid
+            frame = new Border()
+            {
+                BorderBrush = new SolidColorBrush(Colors.Black),
+                BorderThickness = new Thickness(2)
+            };
+            frame.SetValue(Grid.ColumnSpanProperty, _columns);
+            answerGrid.Children.Add(frame);
+
+            PlaceAnswerPegs(answerGrid); // place answer pegs
             gridBoard.Children.Add(answerGrid);
             #endregion
 
@@ -97,6 +119,7 @@ namespace Mastermind
             };
             displayGrid.SetValue(Grid.RowProperty, 1);
             displayGrid.SetValue(Grid.ColumnProperty, 0);
+
             for (i = 0; i < _rows; i++)
             {
                 displayGrid.RowDefinitions.Add(new RowDefinition());
@@ -107,7 +130,18 @@ namespace Mastermind
                     displayGrid.ColumnDefinitions[j].Width = new GridLength(180);
                 } // for j
             } // for i
-            PlaceEmptyPegs(displayGrid);
+
+            // Frame the grid
+            frame = new Border()
+            {
+                BorderBrush = new SolidColorBrush(Colors.Black),
+                BorderThickness = new Thickness(2)
+            };
+            frame.SetValue(Grid.RowSpanProperty, _rows);
+            frame.SetValue(Grid.ColumnSpanProperty, _columns);
+            displayGrid.Children.Add(frame);
+
+            PlaceEmptyPegs(displayGrid); // Place empty pegs
             gridBoard.Children.Add(displayGrid);
             #endregion
 
@@ -129,7 +163,17 @@ namespace Mastermind
                 feedbackGrid.RowDefinitions.Add(new RowDefinition());
                 feedbackGrid.RowDefinitions[i].Height = new GridLength(90);
             } // for i
-            PlaceEmptyFeedbackPegs(feedbackGrid);
+
+            // Frame the grid
+            frame = new Border()
+            {
+                BorderBrush = new SolidColorBrush(Colors.Black),
+                BorderThickness = new Thickness(2)
+            };
+            frame.SetValue(Grid.RowSpanProperty, _rows);
+            feedbackGrid.Children.Add(frame);
+
+            PlaceEmptyFeedbackPegs(feedbackGrid); // Place empty feedback pegs
             gridBoard.Children.Add(feedbackGrid);
             #endregion
 
@@ -146,13 +190,26 @@ namespace Mastermind
             };
             chooseGrid.SetValue(Grid.RowProperty, 2);
             chooseGrid.SetValue(Grid.ColumnSpanProperty, 2);
-            for(i = 0; i < _columns; i++)
+            chooseGrid.RowDefinitions.Add(new RowDefinition());
+            chooseGrid.RowDefinitions.Add(new RowDefinition());
+            chooseGrid.RowDefinitions[0].Height = new GridLength(100);
+            chooseGrid.RowDefinitions[1].Height = new GridLength(100);
+            for (i = 0; i < _columns; i++)
             {
-                chooseGrid.RowDefinitions.Add(new RowDefinition());
-                chooseGrid.RowDefinitions[i].Height = new GridLength(100);
                 chooseGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            }
-            PlaceChoosePegs(chooseGrid);
+            } // for
+
+            // Frame the grid
+            frame = new Border()
+            {
+                BorderBrush = new SolidColorBrush(Colors.Black),
+                BorderThickness = new Thickness(2)
+            };
+            frame.SetValue(Grid.RowSpanProperty, 2);
+            frame.SetValue(Grid.ColumnSpanProperty, _columns);
+            chooseGrid.Children.Add(frame);
+
+            PlaceChoosePegs(chooseGrid); // Place choose pegs
             gridBoard.Children.Add(chooseGrid);
             #endregion
         } // CreateBoard()
@@ -380,14 +437,12 @@ namespace Mastermind
                 if (i == 0)
                 {
                     answerPeg1 = CreateAnswerPegs(i);
-                    questionPeg.Fill = answerPeg1.Fill;
                 }
                 else if (i == 1)
                 {
                     answerPeg2 = CreateAnswerPegs(i);
                     while (((SolidColorBrush)answerPeg2.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color)
                         answerPeg2 = CreateAnswerPegs(i);
-                    questionPeg.Fill = answerPeg2.Fill;
                 }
                 else if (i == 2)
                 {
@@ -395,7 +450,6 @@ namespace Mastermind
                     while (((SolidColorBrush)answerPeg3.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
                             || ((SolidColorBrush)answerPeg3.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color)
                         answerPeg3 = CreateAnswerPegs(i);
-                    questionPeg.Fill = answerPeg3.Fill;
                 }
                 else
                 {
@@ -404,7 +458,6 @@ namespace Mastermind
                         || ((SolidColorBrush)answerPeg4.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
                         || ((SolidColorBrush)answerPeg4.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color)
                         answerPeg4 = CreateAnswerPegs(i);
-                    questionPeg.Fill = answerPeg4.Fill;
                 } // if..else..if
 
                 // Add to parent
@@ -633,8 +686,29 @@ namespace Mastermind
             StackPanel stackPanel;
             TextBlock textBlock;
             Button restartBtn;
+            Ellipse answerPeg;
 
-            // Try remove the game board
+            // Reveal answer pegs
+            for(i = 0; i < _columns; i++)
+            {
+                answerPeg = FindName("questionPeg " + (i + 1).ToString()) as Ellipse;
+                switch (i)
+                {
+                    case 0:
+                        answerPeg.Fill = answerPeg1.Fill;
+                        break;
+                    case 1:
+                        answerPeg.Fill = answerPeg2.Fill;
+                        break;
+                    case 2:
+                        answerPeg.Fill = answerPeg3.Fill;
+                        break;
+                    case 3:
+                        answerPeg.Fill = answerPeg4.Fill;
+                        break;
+                } // switch
+            } // for
+
             gameOverGrid = new Grid()
             {
                 Name = "GameOverGrid",
