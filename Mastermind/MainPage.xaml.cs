@@ -31,6 +31,8 @@ namespace Mastermind
         // Variables
         private int i, j;
         private int currentRow = 0, currentColumn = 0;
+        private Ellipse answerPeg1, answerPeg2, answerPeg3, answerPeg4;
+        private Random randomNumber = new Random();
 
         public Grid chooseGrid { get; private set; }
         #endregion
@@ -297,10 +299,12 @@ namespace Mastermind
             // Variables
             Ellipse emptyPeg;
             Grid smallGrid;
+            int pegNum;
 
             // For loop 5 rows
             for (i = 0; i < _rows; i++)
             {
+                pegNum = 1;
                 // Create a smaller grid 2x2 to put pegs
                 smallGrid = new Grid()
                 {
@@ -324,7 +328,7 @@ namespace Mastermind
                     {
                         emptyPeg = new Ellipse
                         {
-                            Name = "emptyFeedbackPeg " + (i + 1).ToString() + " " + (j + 1).ToString(),
+                            Name = "emptyFeedbackPeg " + (i + 1).ToString() + " " + (pegNum).ToString(),
                             Height = 22.5,
                             Width = 22.5,
                             HorizontalAlignment = HorizontalAlignment.Center,
@@ -336,6 +340,7 @@ namespace Mastermind
                         emptyPeg.SetValue(Grid.RowProperty, j);
                         emptyPeg.SetValue(Grid.ColumnProperty, k);
                         smallGrid.Children.Add(emptyPeg);
+                        pegNum++;
                     } // for k
                 } // for j
 
@@ -377,6 +382,28 @@ namespace Mastermind
                     StrokeThickness = 2,
                     Fill = ellipseBackground
                 };
+
+                // Create answer pegs
+                if (i == 0)
+                {
+                    answerPeg1 = CreateAnswerPegs(i);
+                    questionPeg.Fill = answerPeg1.Fill;
+                }
+                else if (i == 1)
+                {
+                    answerPeg2 = CreateAnswerPegs(i);
+                    questionPeg.Fill = answerPeg2.Fill;
+                }
+                else if (i == 2)
+                {
+                    answerPeg3 = CreateAnswerPegs(i);
+                    questionPeg.Fill = answerPeg3.Fill;
+                }
+                else
+                {
+                    answerPeg4 = CreateAnswerPegs(i);
+                    questionPeg.Fill = answerPeg4.Fill;
+                } // if..else..if
 
                 // Add to parent
                 stackPanel.Children.Add(questionPeg);
@@ -423,8 +450,151 @@ namespace Mastermind
             selectPeg = FindName("emptyPeg " + (currentRow + 1).ToString() + " " + (currentColumn + 1).ToString()) as Ellipse;
             selectPeg.Fill = current.Fill;
 
+            // if row done, give feedback
+            if (currentColumn == 3)
+                FeedbackPegs(currentRow);
+
             // increment current column
             currentColumn++;
         } // Choose.Tapped()
+
+        // Method create answer pegs
+        private Ellipse CreateAnswerPegs(int i)
+        {
+            // Instantiate answer pegs
+            Ellipse answerPeg = new Ellipse
+            {
+                Name = "answerPeg " + (i + 1).ToString(),
+                Height = 80,
+                Width = 80,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Stroke = new SolidColorBrush(Colors.Black),
+                StrokeThickness = 2,
+            };
+
+            // Generate random number
+            int random = randomNumber.Next(8);
+
+            // Switch statement generates random colors
+            switch (random)
+            {
+                case 0:
+                    answerPeg.Fill = new SolidColorBrush(Colors.Red);
+                    break;
+                case 1:
+                    answerPeg.Fill = new SolidColorBrush(Colors.Orange);
+                    break;
+                case 2:
+                    answerPeg.Fill = new SolidColorBrush(Colors.Yellow);
+                    break;
+                case 3:
+                    answerPeg.Fill = new SolidColorBrush(Colors.Green);
+                    break;
+                case 4:
+                    answerPeg.Fill = new SolidColorBrush(Colors.Blue);
+                    break;
+                case 5:
+                    answerPeg.Fill = new SolidColorBrush(Colors.Indigo);
+                    break;
+                case 6:
+                    answerPeg.Fill = new SolidColorBrush(Colors.Violet);
+                    break;
+                case 7:
+                    answerPeg.Fill = new SolidColorBrush(Colors.Pink);
+                    break;
+            } // switch
+
+            return answerPeg;
+        } // CreateAnswerPegs()
+
+        // Method for feedback function
+        private void FeedbackPegs(int currentRow)
+        {
+            // Variables
+            Ellipse currentPeg1, currentPeg2, currentPeg3, currentPeg4;
+            Ellipse currentFeedbackPeg;
+            int feedbackPegNum = 1;
+
+            // Instantiate currentPegs
+            currentPeg1 = FindName("emptyPeg " + (currentRow + 1).ToString() + " 1") as Ellipse;
+            currentPeg2 = FindName("emptyPeg " + (currentRow + 1).ToString() + " 2") as Ellipse;
+            currentPeg3 = FindName("emptyPeg " + (currentRow + 1).ToString() + " 3") as Ellipse;
+            currentPeg4 = FindName("emptyPeg " + (currentRow + 1).ToString() + " 4") as Ellipse;
+
+            #region black pegs
+            // if position and color matches, black pegs
+            if (((SolidColorBrush)currentPeg1.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color)
+            {
+                currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                currentFeedbackPeg.Fill = new SolidColorBrush(Colors.Black);
+                feedbackPegNum++;
+            } // if
+
+            if(((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color)
+            {
+                currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                currentFeedbackPeg.Fill = new SolidColorBrush(Colors.Black);
+                feedbackPegNum++;
+            } // if
+
+            if (((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color)
+            {
+                currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                currentFeedbackPeg.Fill = new SolidColorBrush(Colors.Black);
+                feedbackPegNum++;
+            } // if
+
+            if (((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg4.Fill).Color)
+            {
+                currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                currentFeedbackPeg.Fill = new SolidColorBrush(Colors.Black);
+                feedbackPegNum++;
+            } // if
+            #endregion
+
+            #region white pegs
+            // if color match but wrong position
+            if(feedbackPegNum < 5)
+            {
+                if (((SolidColorBrush)currentPeg1.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
+                || ((SolidColorBrush)currentPeg1.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color
+                || ((SolidColorBrush)currentPeg1.Fill).Color == ((SolidColorBrush)answerPeg4.Fill).Color)
+                {
+                    currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                    currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
+                    feedbackPegNum++;
+                }
+
+                if (((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color
+                    || ((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color
+                    || ((SolidColorBrush)currentPeg2.Fill).Color == ((SolidColorBrush)answerPeg4.Fill).Color)
+                {
+                    currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                    currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
+                    feedbackPegNum++;
+                }
+                if (((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color
+                    || ((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
+                    || ((SolidColorBrush)currentPeg3.Fill).Color == ((SolidColorBrush)answerPeg4.Fill).Color)
+                {
+                    currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                    currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
+                    feedbackPegNum++;
+                }
+                if (((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg1.Fill).Color
+                    || ((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg2.Fill).Color
+                    || ((SolidColorBrush)currentPeg4.Fill).Color == ((SolidColorBrush)answerPeg3.Fill).Color)
+                {
+                    currentFeedbackPeg = FindName("emptyFeedbackPeg " + (currentRow + 1).ToString() + " " + (feedbackPegNum).ToString()) as Ellipse;
+                    currentFeedbackPeg.Fill = new SolidColorBrush(Colors.White);
+                    feedbackPegNum++;
+                }
+            } // if feedbackPegNum < 5
+            
+            #endregion
+
+        } // FeedbackPegs()
+
     } // main
 } // namespace

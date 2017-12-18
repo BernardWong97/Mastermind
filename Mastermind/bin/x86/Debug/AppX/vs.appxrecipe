@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-12-17T23:58:26.938</Modified>
+      <Modified>2017-12-18T14:50:53.916</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Mastermind.exe">
       <PackagePath>entrypoint\Mastermind.exe</PackagePath>
-      <Modified>2017-12-17T23:58:26.629</Modified>
+      <Modified>2017-12-18T14:50:53.643</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\.nuget\packages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -560,7 +560,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\ASUS\source\repos\Mastermind\Mastermind\bin\x86\Debug\Core\Mastermind.exe">
       <PackagePath>Mastermind.exe</PackagePath>
-      <Modified>2017-12-17T23:58:26.933</Modified>
+      <Modified>2017-12-18T14:50:53.912</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
